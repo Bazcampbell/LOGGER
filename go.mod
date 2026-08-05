@@ -1,4 +1,4 @@
-module github.com/bazcampbell/bazbet_logger
+module github.com/bazcampbell/bazbet
 
 go 1.25.0
 
