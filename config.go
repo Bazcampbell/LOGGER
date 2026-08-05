@@ -5,7 +5,6 @@ package logger
 import (
 	"time"
 
-	"github.com/bazcampbell/bazbet_logger/util"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
@@ -88,23 +87,23 @@ const (
 
 func (s LoggerSetup) withDefaults() LoggerSetup {
 	if s.QueueSize <= 0 {
-		s.QueueSize = util.EnvInt("LOG_QUEUE_SIZE", defaultQueueSize)
+		s.QueueSize = envInt("LOG_QUEUE_SIZE", defaultQueueSize)
 	}
 	if s.BatchSize <= 0 {
-		s.BatchSize = util.EnvInt("LOG_BATCH_SIZE", defaultBatchSize)
+		s.BatchSize = envInt("LOG_BATCH_SIZE", defaultBatchSize)
 	}
 	if s.FlushInterval <= 0 {
-		ms := util.EnvInt("LOG_FLUSH_INTERVAL_MS", int(defaultFlushInterval/time.Millisecond))
+		ms := envInt("LOG_FLUSH_INTERVAL_MS", int(defaultFlushInterval/time.Millisecond))
 		s.FlushInterval = time.Duration(ms) * time.Millisecond
 	}
 	if s.InsertTimeout <= 0 {
 		s.InsertTimeout = defaultInsertTimeout
 	}
 	if s.TelegramQueueSize <= 0 {
-		s.TelegramQueueSize = util.EnvInt("LOG_TG_QUEUE_SIZE", defaultQueueSize)
+		s.TelegramQueueSize = envInt("LOG_TG_QUEUE_SIZE", defaultQueueSize)
 	}
 	if s.DedupeWindow == 0 {
-		ms := util.EnvInt("LOG_TG_DEDUPE_MS", int(defaultDedupeWindow/time.Millisecond))
+		ms := envInt("LOG_TG_DEDUPE_MS", int(defaultDedupeWindow/time.Millisecond))
 		s.DedupeWindow = time.Duration(ms) * time.Millisecond
 	}
 	return s
