@@ -1,4 +1,4 @@
-module github.com/bazcampbell/logger
+module github.com/Bazcampbell/logger
 
 go 1.25.0
 
